@@ -4,8 +4,8 @@ const { Schema, model } = require("mongoose");
 const animalSchema = new Schema(
   {
   name: String,
-  type: String,
-  breed: String,
+  type: {type: String, enum: ["Dog", "Cat"]},
+  size: {type: String, enum: ["Small", "Medium", "Big", "Giant"]},
   medical: String,
   passport: Boolean,
   vaccines: Boolean,
