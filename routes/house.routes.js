@@ -2,11 +2,9 @@ const router = require("express").Router();
 const house = require('../models/House.model');
 
 
-
-
-router.get("/", (req, res, next) => {
-    res.json("All good in here");
-});
+// router.get("/", (req, res, next) => {
+//     res.json("All good in here");
+// });
 
 
 router.get("/houses", async (req, res, next) => {

@@ -182,7 +182,7 @@ let houses = [
 ];
 House.insertMany(houses)
   .then((addedHouses) => {
-    addedHouses.forEach((house) => console.log(house.name)); // to console.log each added name
+    addedHouses.map((house) => console.log(house.name)); // to console.log each added name
   })
   .catch((err) => {
     console.log("Error with mongoose method", err);

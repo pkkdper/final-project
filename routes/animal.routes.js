@@ -2,11 +2,11 @@ const router = require('express').Router();
 const animal = require('../models/Animal.model');
 
 
-router.get('/', (req, res, next) => {
-    res.json('All good in here');
-});
+// router.get('/', (req, res, next) => {
+//     res.json('All good in here');
+// });
 
-router.get("/animals", async (req, res, next) => {
+router.get("/", async (req, res, next) => {
     const animals = await animal.find();
 
     res.json(animals);
@@ -14,7 +14,7 @@ router.get("/animals", async (req, res, next) => {
 });
 
 
-router.get("/animals/:id", async (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
     try {
         const { id } = req.params;
         const animal = await animal.findById
@@ -26,7 +26,7 @@ router.get("/animals/:id", async (req, res, next) => {
 });
 
 
-router.post('/animals', async (req, res, next) => {
+router.post('/', async (req, res, next) => {
     const body = req.body;
     console.log(body);
     const animal = await animal.create(body);

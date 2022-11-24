@@ -1,4 +1,4 @@
-const { genSaltSync, compareSync } = require('bcryptjs');
+const { genSaltSync, compareSync, hashSync } = require('bcryptjs');
 const User = require('../models/User.model');
 const router = require('express').Router();
 
@@ -6,8 +6,7 @@ const router = require('express').Router();
 
 
 router.post('/signup', async (req, res) => {
-    const { username, password } = req.body;
-
+    const { name, password } = req.body;
     // encrypt password
 
     const salt = genSaltSync(11)
@@ -15,7 +14,7 @@ router.post('/signup', async (req, res) => {
 
     // record to database
 
-    await User.create({ username, hashedPassword })
+    await User.create({ username:name, password:hashedPassword })
     res.status(201).json({ message: 'User created' })
 })
 
@@ -59,7 +58,9 @@ router.post('/login', async (req, res) => {
 
 
 
-router.get('/verify', isAuthenticated, (req, res) => {
+router.get('/verify',
+// isAuthenticated, 
+(req, res) => {
     // isAuthenticated middleware and made available on `req.payload`
     console.log(`req.payload`, req.payload)
 
