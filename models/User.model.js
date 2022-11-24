@@ -20,8 +20,6 @@ const userSchema = new Schema(
     },
     name: String,
     surname: String,
-    username: String,
-    email: String,
     location: String,
     age: Number,
     picture: String,

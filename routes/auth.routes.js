@@ -1,72 +1,69 @@
-const { genSaltSync, compareSync, hashSync } = require('bcryptjs');
-const User = require('../models/User.model');
-const router = require('express').Router();
+const { genSaltSync, compareSync, hashSync } = require("bcryptjs");
+const User = require("../models/User.model");
+const router = require("express").Router();
+const jwt = require("jsonwebtoken");
 
+router.post("/signup", async (req, res) => {
+  const { username, email, password } = req.body;
+  // encrypt password
 
+  const salt = genSaltSync(11);
+  const hashedPassword = hashSync(password, salt);
 
+  // record to database
 
-router.post('/signup', async (req, res) => {
-    const { name, password } = req.body;
-    // encrypt password
+  await User.create({ username, password: hashedPassword, email });
+  res.status(201).json({ message: "User created" });
+});
 
-    const salt = genSaltSync(11)
-    const hashedPassword = hashSync(password, salt)
+router.post("/login", async (req, res) => {
+  const { username, password } = req.body;
+  console.log("testing");
+  const currentUser = await User.findOne({ username });
 
-    // record to database
+  console.log(currentUser);
 
-    await User.create({ username:name, password:hashedPassword })
-    res.status(201).json({ message: 'User created' })
-})
+  // checking if user exists
 
+  if (currentUser) {
+    // checking if password is correct
+    if (compareSync(password, currentUser.password)) {
+      const userCopy = { ...currentUser._doc };
+      delete userCopy.hashedPassword;
 
-router.post('/login', async (req, res) => {
-    const { username, password } = req.body;
+      //  Generate token - JWT - (don't forget to put a secret in .env file)
 
-    const currentUser = await User.findOneAndDelete({ username })
-
-    console.log(currentUser)
-
-    // checking if user exists
-
-    if (currentUser) {
-        // checking if password is correct
-        if (compareSync(password, currentUser.hashedPassword)) {
-            const userCopy = { ...currentUser._doc }
-            delete userCopy.hashedPassword
-
-            //  Generate token - JWT - (don't forget to put a secret in .env file)
-
-            const authToken = jwt.sign(
-                {
-                    expiresIn: '6h',
-                    userCopy,
-                },
-                process.env.TOKEN_SECRET,
-                {
-                    algorithm: 'HS256',
-                }
-            )
-
-            res.status(200).json({ status: 200, token: authToken })
-        } else {
-            res.status(400).json({ message: 'Wrong password' })
+      const authToken = jwt.sign(
+        {
+          expiresIn: "6h",
+          userCopy,
+        },
+        process.env.TOKEN_SECRET,
+        {
+          algorithm: "HS256",
         }
+      );
+
+      res.status(200).json({ status: 200, token: authToken });
     } else {
-        res.status(404).json({ message: 'No user with this username' })
+      res.status(400).json({ message: "Wrong password" });
     }
-})
+  } else {
+    res.status(404).json({ message: "No user with this username" });
+  }
+});
 
-
-
-router.get('/verify',
-// isAuthenticated, 
-(req, res) => {
+router.get(
+  "/verify",
+  // isAuthenticated,
+  (req, res) => {
     // isAuthenticated middleware and made available on `req.payload`
-    console.log(`req.payload`, req.payload)
+    console.log(`req.payload`, req.payload);
 
     // sending back the object with user data
     // previously set as the token payload
-    res.status(200).json({ payload: req.payload, message: 'Token OK' })
-})
+    res.status(200).json({ payload: req.payload, message: "Token OK" });
+  }
+);
 
 module.exports = router;
