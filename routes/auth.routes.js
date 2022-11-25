@@ -12,8 +12,8 @@ router.post("/signup", async (req, res) => {
 
   // record to database
 
-  await User.create({ username, password: hashedPassword, email });
-  res.status(201).json({ message: "User created" });
+  const user = await User.create({ username, password: hashedPassword, email });
+  res.status(201).json({ user });
 });
 
 router.post("/login", async (req, res) => {
