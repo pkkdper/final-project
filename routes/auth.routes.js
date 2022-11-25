@@ -2,6 +2,7 @@ const { genSaltSync, compareSync, hashSync } = require("bcryptjs");
 const User = require("../models/User.model");
 const router = require("express").Router();
 const jwt = require("jsonwebtoken");
+const { isAuthenticated } = require("../middlewares/isAuthenticated");
 
 router.post("/signup", async (req, res) => {
   const { username, email, password } = req.body;
@@ -53,9 +54,21 @@ router.post("/login", async (req, res) => {
   }
 });
 
+router.get("/profile:id", async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const user = await user.findById
+
+    res.jason(user);
+} catch (error) {
+    res.status(404).json();
+}
+
+});
+
 router.get(
   "/verify",
-  // isAuthenticated,
+  isAuthenticated,
   (req, res) => {
     // isAuthenticated middleware and made available on `req.payload`
     console.log(`req.payload`, req.payload);
