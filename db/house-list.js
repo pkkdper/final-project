@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const House = require("../models/House.model");
 require("./index");
+const flat1 = require("./housepictures/flat1.jpg")
 
 let houses = [
   {
