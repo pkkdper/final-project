@@ -71,6 +71,16 @@ router.get("/profile/:id", async (req, res, next) => {
 
 });
 
+router.post("/profile/:id", async (req, res) => {
+  const { username, email, name } = req.body;
+  const { id } = req.params;
+
+  // record to database
+
+  const user = await User.findByIdAndUpdate(id, { username, name, email }, { new: true });
+  res.status(201).json({ user });
+});
+
 router.get("/verify", isAuthenticated, (req, res) => {
   // isAuthenticated middleware and made available on `req.payload`
   console.log(`req.payload`, req.payload);
