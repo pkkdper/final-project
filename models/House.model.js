@@ -2,16 +2,16 @@ const { Schema, model } = require("mongoose");
 
 // TODO: Please make sure you edit the User model to whatever makes sense in this case
 const houseSchema = new Schema({
-  name: {type: String, unique: true},
+  name: { type: String, unique: true },
   location: String,
-  price: Number,
+  pricepernight: Number,
   maxnumberofdays: Number,
   rooms: Number,
-  type: {type: String, enum: ["House", "Apartment", "Flat", "Farm", "Room"]},
-  animaltype: {type: String, enum: ["Dog", "Cat"]},
-  maxsizeofanimal: {type: String, enum: ["Small", "Medium", "Big", "Giant"]},
+  type: { type: String, enum: ["House", "Apartment", "Flat", "Farm", "Room"] },
+  animaltype: { type: String, enum: ["Dog", "Cat"] },
+  maxsizeofanimal: { type: String, enum: ["Small", "Medium", "Big", "Giant"] },
   maxnumberofanimals: Number,
-  photo: String
+  photo: String,
 });
 
 const House = model("House", houseSchema);
