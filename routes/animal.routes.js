@@ -1,13 +1,11 @@
 const router = require('express').Router();
-const animal = require('../models/Animal.model');
+const Animal = require("../models/Animal.model");
+const jwt = require("jsonwebtoken");
 const { isAuthenticated } = require("../middlewares/isAuthenticated");
 
 
-// router.get('/', (req, res, next) => {
-//     res.json('All good in here');
-// });
 
-router.get("/", async (req, res, next) => {
+router.get("/animals", async (req, res, next) => {
     const animals = await animal.find();
 
     res.json(animals);
@@ -15,10 +13,10 @@ router.get("/", async (req, res, next) => {
 });
 
 
-router.get("/:id", isAuthenticated, async (req, res, next) => {
+router.get("/animals/:id", async (req, res, next) => {
     try {
         const { id } = req.params;
-        const animal = await animal.findById()
+        const animal = await animal.findById(id);
 
         res.json(animal);
     } catch (error) {
@@ -26,8 +24,9 @@ router.get("/:id", isAuthenticated, async (req, res, next) => {
     }
 });
 
+//  CREATE an animal
 
-router.post('/', async (req, res, next) => {
+router.post('/animals', async (req, res, next) => {
     const body = req.body;
     console.log(body);
     const animal = await animal.create(body);
@@ -35,6 +34,32 @@ router.post('/', async (req, res, next) => {
     res.status(201).json(animal);
 
 });
+
+// UPDATE an animal
+
+router.put('/animals/:id', async (req, res, next) => {
+    const { id } = req.params;
+    const body = req.body;
+
+    const animal = await animal.findByIdAndUpdate(id, body, { new: true });
+
+    res.json({ animal });
+
+});
+
+
+// DELETE an animal
+
+router.delete('/animals/:id', async (req, res, next) => {
+    const { id } = req.params;
+    const animal = await animal.findByIdAndDelete(id);
+
+    res.json(animal)
+
+});
+
+
+
 
 
 module.exports = router;
