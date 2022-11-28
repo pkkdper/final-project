@@ -54,12 +54,12 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.get("/profile:id", async (req, res, next) => {
+router.get("/profile/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
-    const user = await user.findById
+    const user = await User.findById(id)
 
-    res.jason(user);
+    res.json(user);
 } catch (error) {
     res.status(404).json();
 }
