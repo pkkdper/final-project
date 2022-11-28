@@ -54,29 +54,24 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.get("/profile/:id", async (req, res, next) => {
+router.get("/main", async (req, res, next) => {
   try {
     const { id } = req.params;
-    const user = await User.findById(id)
+    const user = await User.findById(id);
 
     res.json(user);
-} catch (error) {
+  } catch (error) {
     res.status(404).json();
-}
-
+  }
 });
 
-router.get(
-  "/verify",
-  isAuthenticated,
-  (req, res) => {
-    // isAuthenticated middleware and made available on `req.payload`
-    console.log(`req.payload`, req.payload);
+router.get("/verify", isAuthenticated, (req, res) => {
+  // isAuthenticated middleware and made available on `req.payload`
+  console.log(`req.payload`, req.payload);
 
-    // sending back the object with user data
-    // previously set as the token payload
-    res.status(200).json({ payload: req.payload, message: "Token OK" });
-  }
-);
+  // sending back the object with user data
+  // previously set as the token payload
+  res.status(200).json({ payload: req.payload, message: "Token OK" });
+});
 
 module.exports = router;
