@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const animal = require('../models/Animal.model');
+const { isAuthenticated } = require("../middlewares/isAuthenticated");
 
 
 // router.get('/', (req, res, next) => {
