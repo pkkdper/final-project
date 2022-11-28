@@ -18,9 +18,9 @@ router.get("/", async (req, res, next) => {
 router.get("/:id", isAuthenticated, async (req, res, next) => {
     try {
         const { id } = req.params;
-        const animal = await animal.findById
+        const animal = await animal.findById()
 
-        res.jason(animal);
+        res.json(animal);
     } catch (error) {
         res.status(404).json({ message: "animal not found" });
     }

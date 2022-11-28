@@ -4,7 +4,7 @@ const { Schema, model } = require("mongoose");
 const houseSchema = new Schema({
   name: {type: String, unique: true},
   location: String,
-  price: Number,
+  pricepernight: Number,
   maxnumberofdays: Number,
   rooms: Number,
   type: {type: String, enum: ["House", "Apartment", "Flat", "Farm", "Room"]},
