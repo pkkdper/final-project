@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const House = require("../models/House.model");
 require("./index");
 
+
 let houses = [
   {
     name: "Beautiful apartment",
@@ -13,6 +14,7 @@ let houses = [
     animaltype: "Dog",
     maxsizeofanimal: "Big",
     maxnumberofanimals: 3,
+    photo: "/housepictures/flat1.jpg"
   },
   {
     name: "House for cats",
@@ -24,6 +26,8 @@ let houses = [
     animaltype: "Cat",
     maxsizeofanimal: "Medium",
     maxnumberofanimals: 2,
+    photo: "/housepictures/flat1.jpg"
+
   },
   {
     name: "Great flat to visit with your dog!",
@@ -35,6 +39,8 @@ let houses = [
     animaltype: "Dog",
     maxsizeofanimal: "Small",
     maxnumberofanimals: 1,
+    photo: "/housepictures/flat1.jpg"
+
   },
   {
     name: "Farm for Animals",
@@ -46,6 +52,8 @@ let houses = [
     animaltype: "Cat",
     maxsizeofanimal: "Giant",
     maxnumberofanimals: 2,
+    photo: "/housepictures/flat1.jpg"
+
   },
   {
     name: "Cat's room",
@@ -57,6 +65,8 @@ let houses = [
     animaltype: "Cat",
     maxsizeofanimal: "Medium",
     maxnumberofanimals: 1,
+    photo: "/housepictures/flat1.jpg"
+
   },
   {
     name: "Vacation house",
@@ -68,6 +78,8 @@ let houses = [
     animaltype: "Dog",
     maxsizeofanimal: "Big",
     maxnumberofanimals: 2,
+    photo: "/housepictures/flat1.jpg"
+
   },
   {
     name: "Quiet Apartment",
@@ -79,6 +91,8 @@ let houses = [
     animaltype: "Cat",
     maxsizeofanimal: "Small",
     maxnumberofanimals: 2,
+    photo: "/housepictures/flat1.jpg"
+
   },
   {
     name: "Nice flat",
@@ -90,6 +104,8 @@ let houses = [
     animaltype: "Cat",
     maxsizeofanimal: "Big",
     maxnumberofanimals: 3,
+    photo: "/housepictures/flat1.jpg"
+
   },
   {
     name: "Farm for rent",
@@ -101,6 +117,8 @@ let houses = [
     animaltype: "Dog",
     maxsizeofanimal: "Giant",
     maxnumberofanimals: 6,
+    photo: "/housepictures/flat1.jpg"
+
   },
   // {
   //   name: "House for turtles",
