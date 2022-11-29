@@ -55,20 +55,18 @@ router.post("/login", async (req, res) => {
 });
 
 // router.get("/main", async (req, res, next) => {
-  
-// });
 
+// });
 
 router.get("/profile/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
-    const user = await User.findById(id)
+    const user = await User.findById(id);
 
     res.json(user);
-} catch (error) {
+  } catch (error) {
     res.status(404).json();
-}
-
+  }
 });
 
 router.post("/profile/:id", async (req, res) => {
@@ -77,7 +75,11 @@ router.post("/profile/:id", async (req, res) => {
 
   // record to database
 
-  const user = await User.findByIdAndUpdate(id, { username, name, email }, { new: true });
+  const user = await User.findByIdAndUpdate(
+    id,
+    { username, name, email },
+    { new: true }
+  );
   res.status(201).json({ user });
 });
 
