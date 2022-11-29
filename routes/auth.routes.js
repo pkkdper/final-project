@@ -50,22 +50,19 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// router.get("/main", async (req, res, next) => {
-  
+
+
+
+
+
+
+
+// router.get("/animals", async (req, res, next) => {
+//   const animals = await Animal.find();
+
+//   res.json(animals);
+//   console.log(animals)
 // });
-
-
-
-
-
-
-
-router.get("/animals", async (req, res, next) => {
-  const animals = await Animal.find();
-
-  res.json(animals);
-  console.log(animals)
-});
 
 
 
@@ -80,8 +77,10 @@ router.get("/profile/:id", async (req, res, next) => {
     const { id } = req.params;
     const user = await User.findById(id)
    .populate("animals") // key to populate
-   .then(user => {
-      res.json(user); 
+
+// const userLikedRecipes = currentUser.likedRecipes
+   .then(user => {console.log(user)
+      res.json(user);     
    });
     // res.json(user);
 } catch (error) {
@@ -99,12 +98,12 @@ router.get("/profile/:id", async (req, res, next) => {
 
 
 router.post("/profile/:id", async (req, res) => {
-  const { username, email, name } = req.body;
+  const { username, email, name, surname, picture, location, age} = req.body;
   const { id } = req.params;
 
   // record to database
 
-  const user = await User.findByIdAndUpdate(id, { username, name, email }, { new: true });
+  const user = await User.findByIdAndUpdate(id, { username, name, email, surname, picture, location, age }, { new: true });
   res.status(201).json({ user });
 });
 
