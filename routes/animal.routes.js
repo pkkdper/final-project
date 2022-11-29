@@ -2,7 +2,7 @@ const router = require("express").Router();
 const Animal = require("../models/Animal.model");
 const jwt = require("jsonwebtoken");
 const { isAuthenticated } = require("../middlewares/isAuthenticated");
-
+const User = require("../models/User.model")
 router.get("/animals", async (req, res, next) => {
   const animals = await Animal.find();
 
@@ -22,11 +22,12 @@ router.get("/animals", async (req, res, next) => {
 // });
 
 //  CREATE an animal
-
-router.post("/animals", async (req, res, next) => {
+//      /animals/animals
+router.post("/", isAuthenticated , async (req, res, next) => {
   const { name, type, size, medical, passport, vaccines } = req.body;
-  console.log(body);
-  const animal = await animal.create(body);
+  const animal = await Animal.create(req.body);
+  const userFound = await User.findByIdAndUpdate( req.payload.userCopy._id, {$push:{animals:animal._id}}, {new:true});
+
 
   res.status(201).json(animal);
 });

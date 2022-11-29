@@ -79,9 +79,9 @@ router.get("/profile/:id", async (req, res, next) => {
    .populate("animals") // key to populate
 
 // const userLikedRecipes = currentUser.likedRecipes
-   .then(user => {console.log(user)
+   
       res.json(user);     
-   });
+
     // res.json(user);
 } catch (error) {
     res.status(404).json();
@@ -113,6 +113,7 @@ router.get("/verify", isAuthenticated, (req, res) => {
 
   // sending back the object with user data
   // previously set as the token payload
+  console.log(req.payload)
   res.status(200).json({ payload: req.payload, message: "Token OK" });
 });
 

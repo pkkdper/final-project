@@ -23,8 +23,12 @@ const userSchema = new Schema(
     location: String,
     age: Number,
     picture: String,
-    animals: [{ type: Schema.Types.ObjectId, ref: "Animal" }],
     houses: [{ type: Schema.Types.ObjectId, ref: "House" }],
+    animals: {
+      type: [Schema.Types.ObjectId],
+      ref:"Animal",
+      default:[]
+    }
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
