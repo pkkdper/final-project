@@ -1,6 +1,6 @@
+require("dotenv").config();
 const mongoose = require("mongoose");
 const House = require("../models/House.model");
-require("./index");
 
 let houses = [
   {
@@ -13,7 +13,7 @@ let houses = [
     animaltype: "Dog",
     maxsizeofanimal: "Big",
     maxnumberofanimals: 3,
-    photo: "/housepictures/flat1.jpg",
+    /* photo: "picture", */
   },
   {
     name: "House for cats",
@@ -25,7 +25,7 @@ let houses = [
     animaltype: "Cat",
     maxsizeofanimal: "Medium",
     maxnumberofanimals: 2,
-    photo: "/housepictures/flat1.jpg",
+    /* photo: <img src="/housepictures/flat1.jpg"></img>, */
   },
   {
     name: "Great flat to visit with your dog!",
@@ -37,7 +37,7 @@ let houses = [
     animaltype: "Dog",
     maxsizeofanimal: "Small",
     maxnumberofanimals: 1,
-    photo: "/housepictures/flat1.jpg",
+    /*  photo: <img src="/housepictures/flat1.jpg"></img>, */
   },
   {
     name: "Farm for Animals",
@@ -49,7 +49,7 @@ let houses = [
     animaltype: "Cat",
     maxsizeofanimal: "Giant",
     maxnumberofanimals: 2,
-    photo: "/housepictures/flat1.jpg",
+    /* photo: <img src="/housepictures/flat1.jpg"></img>, */
   },
   {
     name: "Cat's room",
@@ -61,7 +61,7 @@ let houses = [
     animaltype: "Cat",
     maxsizeofanimal: "Medium",
     maxnumberofanimals: 1,
-    photo: "/housepictures/flat1.jpg",
+    /*   photo: <img src="/housepictures/flat1.jpg"></img>, */
   },
   {
     name: "Vacation house",
@@ -73,7 +73,7 @@ let houses = [
     animaltype: "Dog",
     maxsizeofanimal: "Big",
     maxnumberofanimals: 2,
-    photo: "/housepictures/flat1.jpg",
+    /*  photo: <img src="/housepictures/flat1.jpg"></img>, */
   },
   {
     name: "Quiet Apartment",
@@ -85,7 +85,7 @@ let houses = [
     animaltype: "Cat",
     maxsizeofanimal: "Small",
     maxnumberofanimals: 2,
-    photo: "/housepictures/flat1.jpg",
+    /*  photo: <img src="/housepictures/flat1.jpg"></img>, */
   },
   {
     name: "Nice flat",
@@ -97,7 +97,7 @@ let houses = [
     animaltype: "Cat",
     maxsizeofanimal: "Big",
     maxnumberofanimals: 3,
-    photo: "/housepictures/flat1.jpg",
+    /* photo: <img src="/housepictures/flat1.jpg"></img>, */
   },
   {
     name: "Farm for rent",
@@ -109,7 +109,7 @@ let houses = [
     animaltype: "Dog",
     maxsizeofanimal: "Giant",
     maxnumberofanimals: 6,
-    photo: "/housepictures/flat1.jpg",
+    /*   photo: "/housepictures/flat1.jpg", */
   },
   // {
   //   name: "House for turtles",
@@ -189,10 +189,23 @@ let houses = [
   //   maxnumberofanimals: 2,
   // },
 ];
-House.insertMany(houses)
-  .then((addedHouses) => {
-    addedHouses.map((house) => console.log(house.name)); // to console.log each added name
+
+const MONGO_URI =
+  process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/final-project";
+console.log(MONGO_URI);
+mongoose
+  .connect(MONGO_URI)
+  .then((x) => {
+    const dbName = x.connections[0].name;
+    console.log(`Connected to Mongo! Database name: "${dbName}"`);
+    House.insertMany(houses)
+      .then((addedHouses) => {
+        addedHouses.map((house) => console.log(house.name)); // to console.log each added name
+      })
+      .catch((err) => {
+        console.log("Error with mongoose method", err);
+      });
   })
   .catch((err) => {
-    console.log("Error with mongoose method", err);
+    console.error("Error connecting to mongo: ", err);
   });
