@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const House = require("../models/House.model");
+const User = require("../models/User.model");
 require("./index");
+const Animal = require("../models/Animal.model")
 // const flat1 = require("./housepictures/flat1.jpg")
 
 
@@ -191,10 +193,20 @@ let houses = [
   //   maxnumberofanimals: 2,
   // },
 ];
-House.insertMany(houses)
-  .then((addedHouses) => {
-    addedHouses.map((house) => console.log(house.name)); // to console.log each added name
-  })
-  .catch((err) => {
+House.insertMany(houses).then((addedHouses) => {
+    const user = {email: 'tes@test.com',
+    username: 'test',
+    password: 'test',
+    name: '',
+    surname: '',
+    location: '',
+    age: 0,
+    picture: '',
+    animals: [],
+    houses: addedHouses.map(house => house._id),
+    }
+
+    User.insertMany(user); 
+  }).catch((err) => {
     console.log("Error with mongoose method", err);
   });
