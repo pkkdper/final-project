@@ -210,21 +210,3 @@ mongoose
   .catch((err) => {
     console.error("Error connecting to mongo: ", err);
   });
-
-  House.insertMany(houses).then((addedHouses) => {
-    const user = {email: 'tes@test.com',
-    username: 'test',
-    password: 'test',
-    name: '',
-    surname: '',
-    location: '',
-    age: 0,
-    picture: '',
-    animals: [],
-    houses: addedHouses.map(house => house._id),
-    }
-
-    User.insertMany(user); 
-  }).catch((err) => {
-    console.log("Error with mongoose method", err);
-  });
