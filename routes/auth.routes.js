@@ -64,6 +64,7 @@ router.post("/login", async (req, res) => {
 //   console.log(animals)
 // });
 
+// });
 
 
 
@@ -85,8 +86,7 @@ router.get("/profile/:id", async (req, res, next) => {
     // res.json(user);
 } catch (error) {
     res.status(404).json();
-}
-
+  }
 });
 
 
