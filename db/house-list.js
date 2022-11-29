@@ -227,6 +227,4 @@ mongoose
         console.log("Error with mongoose method", err);
       });
   })
-  .catch((err) => {
-    console.error("Error connecting to mongo: ", err);
-  });
+  
