@@ -24,11 +24,10 @@ const userSchema = new Schema(
     age: Number,
     picture: String,
     houses: [{ type: Schema.Types.ObjectId, ref: "House" }],
-    animals: {
-      type: [Schema.Types.ObjectId],
-      ref:"Animal",
-      default:[]
-    }
+    animals: [{
+      type: Schema.Types.ObjectId,
+      ref:"Animal"
+    }]
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`

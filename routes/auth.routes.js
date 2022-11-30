@@ -20,7 +20,9 @@ router.post("/signup", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
-  const currentUser = await User.findOne({ username });
+  const currentUser = await User.findOne({ username })
+      
+
 
   if (currentUser) {
     // checking if password is correct
@@ -77,11 +79,15 @@ router.get("/profile/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
     const user = await User.findById(id)
-   .populate("animals") // key to populate
-
+   .populate("animals houses").exec(function (err, results) {
+    // callback
+    console.log(results)
+    res.json(results);   
+});
+// key to populate
 // const userLikedRecipes = currentUser.likedRecipes
    
-      res.json(user);     
+        
 
     // res.json(user);
 } catch (error) {
