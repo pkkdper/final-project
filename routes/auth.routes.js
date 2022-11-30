@@ -3,6 +3,7 @@ const User = require("../models/User.model");
 const router = require("express").Router();
 const jwt = require("jsonwebtoken");
 const { isAuthenticated } = require("../middlewares/isAuthenticated");
+const Animal = require("../models/Animal.model");
 
 router.post("/signup", async (req, res) => {
   const { username, email, password } = req.body;
@@ -19,12 +20,7 @@ router.post("/signup", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
-  console.log("testing");
   const currentUser = await User.findOne({ username });
-
-  console.log(currentUser);
-
-  // checking if user exists
 
   if (currentUser) {
     // checking if password is correct
@@ -54,41 +50,70 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// router.get("/main", async (req, res, next) => {
+
+
+
+
+
+
+
+// router.get("/animals", async (req, res, next) => {
+//   const animals = await Animal.find();
+
+//   res.json(animals);
+//   console.log(animals)
+// });
 
 // });
+
+
+
+
+
+
+
 
 router.get("/profile/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
-    const user = await User.findById(id);
+    const user = await User.findById(id)
+   .populate("animals") // key to populate
 
-    res.json(user);
-  } catch (error) {
+// const userLikedRecipes = currentUser.likedRecipes
+   
+      res.json(user);     
+
+    // res.json(user);
+} catch (error) {
     res.status(404).json();
   }
 });
 
+
+
+
+
+
+
+
+
 router.post("/profile/:id", async (req, res) => {
-  const { username, email, name } = req.body;
+  const { username, email, name, surname, picture, location, age} = req.body;
   const { id } = req.params;
 
   // record to database
 
-  const user = await User.findByIdAndUpdate(
-    id,
-    { username, name, email },
-    { new: true }
-  );
+  const user = await User.findByIdAndUpdate(id, { username, name, email, surname, picture, location, age }, { new: true });
   res.status(201).json({ user });
 });
 
 router.get("/verify", isAuthenticated, (req, res) => {
   // isAuthenticated middleware and made available on `req.payload`
-  console.log(`req.payload`, req.payload);
+  // console.log(`req.payload`, req.payload);
 
   // sending back the object with user data
   // previously set as the token payload
+  console.log(req.payload)
   res.status(200).json({ payload: req.payload, message: "Token OK" });
 });
 

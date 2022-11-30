@@ -1,41 +1,55 @@
-const router = require('express').Router();
-const animal = require('../models/Animal.model');
+const router = require("express").Router();
+const Animal = require("../models/Animal.model");
+const jwt = require("jsonwebtoken");
 const { isAuthenticated } = require("../middlewares/isAuthenticated");
+const User = require("../models/User.model")
+router.get("/animals", async (req, res, next) => {
+  const animals = await Animal.find();
 
+  res.json(animals);
+  console.log(animals)
+});
 
-// router.get('/', (req, res, next) => {
-//     res.json('All good in here');
+// router.get("/animals", async (req, res, next) => {
+//   try {
+//     const { id } = req.params;
+//     // const animal = await animal.findById(id);
+
+//     res.json(animal);
+//   } catch (error) {
+//     res.status(404).json({ message: "animal not found" });
+//   }
 // });
 
-router.get("/", async (req, res, next) => {
-    const animals = await animal.find();
+//  CREATE an animal
+//      /animals/animals
+router.post("/", isAuthenticated , async (req, res, next) => {
+  const { name, type, size, medical, passport, vaccines } = req.body;
+  const animal = await Animal.create(req.body);
+  const userFound = await User.findByIdAndUpdate( req.payload.userCopy._id, {$push:{animals:animal._id}}, {new:true});
 
-    res.json(animals);
 
+  res.status(201).json(animal);
 });
 
+// UPDATE an animal
 
-router.get("/:id", isAuthenticated, async (req, res, next) => {
-    try {
-        const { id } = req.params;
-        const animal = await animal.findById()
+router.put("/animals/:id", async (req, res, next) => {
+  const { id } = req.params;
+  const body = req.body;
 
-        res.json(animal);
-    } catch (error) {
-        res.status(404).json({ message: "animal not found" });
-    }
+  const animal = await animal.create(id, body, { new: true });
+
+  res.json({ animal });
 });
 
+// DELETE an animal
 
-router.post('/', async (req, res, next) => {
-    const body = req.body;
-    console.log(body);
-    const animal = await animal.create(body);
+router.delete("/animals/:id", async (req, res, next) => {
+  const { id } = req.params;
+  const animal = await animal.findByIdAndDelete(id);
 
-    res.status(201).json(animal);
-
+  res.json(animal);
 });
-
 
 module.exports = router;
-

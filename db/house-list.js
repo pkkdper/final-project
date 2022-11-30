@@ -1,6 +1,11 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
 const House = require("../models/House.model");
+const User = require("../models/User.model");
+require("./index");
+const Animal = require("../models/Animal.model")
+// const flat1 = require("./housepictures/flat1.jpg")
+
 
 let houses = [
   {
@@ -192,6 +197,22 @@ let houses = [
   //   maxnumberofanimals: 2,
   // },
 ];
+// House.insertMany(houses).then((addedHouses) => {
+//     const user = {email: 'tes@test.com',
+//     username: 'test',
+//     password: 'test',
+//     name: '',
+//     surname: '',
+//     location: '',
+//     age: 0,
+//     picture: '',
+//     animals: [],
+//     houses: addedHouses.map(house => house._id),
+//     }
+
+//     User.insertMany(user); 
+//   }).catch((err) => {
+//     console.log("Error with mongoose method", err);
 
 const MONGO_URI =
   process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/final-project";
@@ -209,6 +230,4 @@ mongoose
         console.log("Error with mongoose method", err);
       });
   })
-  .catch((err) => {
-    console.error("Error connecting to mongo: ", err);
-  });
+  
