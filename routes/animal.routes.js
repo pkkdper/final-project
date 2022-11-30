@@ -45,11 +45,11 @@ router.put("/animals/:id", async (req, res, next) => {
 
 // DELETE an animal
 
-router.delete("/animals/:id", async (req, res, next) => {
+router.delete("/animals/delete/:id", async (req, res, next) => {
   const { id } = req.params;
   const animal = await animal.findByIdAndDelete(id);
-
-  res.json(animal);
+  // const userUpdated = await User.findByIdAndUpdate( userid, {$push:{houses:houseid}}, {new:true});
+  res.status(204).json(animal)
 });
 
 module.exports = router;

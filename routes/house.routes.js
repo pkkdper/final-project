@@ -50,7 +50,7 @@ router.delete("/houses/:id", async (req, res, next) => {
 
   res.json(house);
 });
-
+// ADD a house
 router.get("/houses/renthouse/:houseid/user/:userid", async (req, res) => {
   const { houseid, userid } = req.params;
   const userUpdated = await User.findByIdAndUpdate( userid, {$push:{houses:houseid}}, {new:true});
