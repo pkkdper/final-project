@@ -18,7 +18,8 @@ let houses = [
     animaltype: "Dog",
     maxsizeofanimal: "Big",
     maxnumberofanimals: 3,
-    photo: "/housepictures/flat1.jpg",
+    photo:
+      "https://images.unsplash.com/photo-1529408632839-a54952c491e5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80",
   },
   {
     name: "House for cats",
@@ -30,7 +31,8 @@ let houses = [
     animaltype: "Cat",
     maxsizeofanimal: "Medium",
     maxnumberofanimals: 2,
-    photo: "/housepictures/flat1.jpg",
+    photo:
+      "http://www.pexels.com/es-es/foto/sofa-gris-junto-a-la-ventana-2459/",
   },
   {
     name: "Great flat to visit with your dog!",
@@ -42,7 +44,8 @@ let houses = [
     animaltype: "Dog",
     maxsizeofanimal: "Small",
     maxnumberofanimals: 1,
-    photo: "/housepictures/flat1.jpg",
+    photo:
+      "https://images.pexels.com/photos/2459/stairs-home-loft-lifestyle.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
   },
   {
     name: "Farm for Animals",
