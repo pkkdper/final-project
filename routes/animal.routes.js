@@ -35,14 +35,14 @@ router.post("/", isAuthenticated , async (req, res, next) => {
 
 // UPDATE an animal
 
-router.put("/animals/:id", async (req, res, next) => {
-  const { id } = req.params;
-  const body = req.body;
+// router.put("/animals/:id", async (req, res, next) => {
+//   const { id } = req.params;
+//   const body = req.body;
 
-  const animal = await animal.create(id, body, { new: true });
+//   const animal = await animal.create(id, body, { new: true });
 
-  res.json({ animal });
-});
+//   res.json({ animal });
+// });
 
 // DELETE an animal
 
