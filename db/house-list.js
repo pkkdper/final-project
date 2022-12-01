@@ -3,9 +3,8 @@ const mongoose = require("mongoose");
 const House = require("../models/House.model");
 const User = require("../models/User.model");
 require("./index");
-const Animal = require("../models/Animal.model")
+const Animal = require("../models/Animal.model");
 // const flat1 = require("./housepictures/flat1.jpg")
-
 
 let houses = [
   {
@@ -32,7 +31,7 @@ let houses = [
     maxsizeofanimal: "Medium",
     maxnumberofanimals: 2,
     photo:
-      "http://www.pexels.com/es-es/foto/sofa-gris-junto-a-la-ventana-2459/",
+      "https://images.unsplash.com/photo-1501183638710-841dd1904471?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
   },
   {
     name: "Great flat to visit with your dog!",
@@ -57,7 +56,8 @@ let houses = [
     animaltype: "Cat",
     maxsizeofanimal: "Giant",
     maxnumberofanimals: 2,
-    photo: "/housepictures/flat1.jpg",
+    photo:
+      "https://images.unsplash.com/photo-1600457008548-8a153e914616?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1474&q=80",
   },
   {
     name: "Cat's room",
@@ -69,7 +69,8 @@ let houses = [
     animaltype: "Cat",
     maxsizeofanimal: "Medium",
     maxnumberofanimals: 1,
-    photo: "/housepictures/flat1.jpg",
+    photo:
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
   },
   {
     name: "Vacation house",
@@ -81,7 +82,8 @@ let houses = [
     animaltype: "Dog",
     maxsizeofanimal: "Big",
     maxnumberofanimals: 2,
-    photo: "/housepictures/flat1.jpg",
+    photo:
+      "https://images.unsplash.com/photo-1590725175785-de025cc60835?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
   },
   {
     name: "Quiet Apartment",
@@ -93,7 +95,8 @@ let houses = [
     animaltype: "Cat",
     maxsizeofanimal: "Small",
     maxnumberofanimals: 2,
-    photo: "/housepictures/flat1.jpg",
+    photo:
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
   },
   {
     name: "Nice flat",
@@ -119,83 +122,83 @@ let houses = [
     maxnumberofanimals: 6,
     photo: "/housepictures/flat1.jpg",
   },
-  // {
-  //   name: "House for turtles",
-  //   location: "Colorado, USA",
-  //   pricepernight: 55,
-  //   maxnumberofdays: 3,
-  //   rooms: 2,
-  //   type: "House",
-  //   animaltype: "Cat",
-  //   maxsizeofanimal: "Medium",
-  //   maxnumberofanimals: 2,
-  // },
-  // {
-  //   name: "House for turtles",
-  //   location: "Colorado, USA",
-  //   pricepernight: 55,
-  //   maxnumberofdays: 3,
-  //   rooms: 2,
-  //   type: "House",
-  //   animaltype: "Cat",
-  //   maxsizeofanimal: "Medium",
-  //   maxnumberofanimals: 2,
-  // },
-  // {
-  //   name: "House for turtles",
-  //   location: "Colorado, USA",
-  //   pricepernight: 55,
-  //   maxnumberofdays: 3,
-  //   rooms: 2,
-  //   type: "House",
-  //   animaltype: "Cat",
-  //   maxsizeofanimal: "Medium",
-  //   maxnumberofanimals: 2,
-  // },
-  // {
-  //   name: "House for turtles",
-  //   location: "Colorado, USA",
-  //   pricepernight: 55,
-  //   maxnumberofdays: 3,
-  //   rooms: 2,
-  //   type: "House",
-  //   animaltype: "Cat",
-  //   maxsizeofanimal: "Medium",
-  //   maxnumberofanimals: 2,
-  // },
-  // {
-  //   name: "House for turtles",
-  //   location: "Colorado, USA",
-  //   pricepernight: 55,
-  //   maxnumberofdays: 3,
-  //   rooms: 2,
-  //   type: "House",
-  //   animaltype: "Cat",
-  //   maxsizeofanimal: "Medium",
-  //   maxnumberofanimals: 2,
-  // },
-  // {
-  //   name: "House for turtles",
-  //   location: "Colorado, USA",
-  //   pricepernight: 55,
-  //   maxnumberofdays: 3,
-  //   rooms: 2,
-  //   type: "House",
-  //   animaltype: "Cat",
-  //   maxsizeofanimal: "Medium",
-  //   maxnumberofanimals: 2,
-  // },
-  // {
-  //   name: "House for turtles",
-  //   location: "Colorado, USA",
-  //   pricepernight: 55,
-  //   maxnumberofdays: 3,
-  //   rooms: 2,
-  //   type: "House",
-  //   animaltype: "Cat",
-  //   maxsizeofanimal: "Medium",
-  //   maxnumberofanimals: 2,
-  // },
+  {
+    name: "House for turtles",
+    location: "Colorado, USA",
+    pricepernight: 55,
+    maxnumberofdays: 3,
+    rooms: 2,
+    type: "House",
+    animaltype: "Cat",
+    maxsizeofanimal: "Medium",
+    maxnumberofanimals: 2,
+  },
+  {
+    name: "House for turtles",
+    location: "Colorado, USA",
+    pricepernight: 55,
+    maxnumberofdays: 3,
+    rooms: 2,
+    type: "House",
+    animaltype: "Cat",
+    maxsizeofanimal: "Medium",
+    maxnumberofanimals: 2,
+  },
+  {
+    name: "House for turtles",
+    location: "Colorado, USA",
+    pricepernight: 55,
+    maxnumberofdays: 3,
+    rooms: 2,
+    type: "House",
+    animaltype: "Cat",
+    maxsizeofanimal: "Medium",
+    maxnumberofanimals: 2,
+  },
+  {
+    name: "House for turtles",
+    location: "Colorado, USA",
+    pricepernight: 55,
+    maxnumberofdays: 3,
+    rooms: 2,
+    type: "House",
+    animaltype: "Cat",
+    maxsizeofanimal: "Medium",
+    maxnumberofanimals: 2,
+  },
+  {
+    name: "House for turtles",
+    location: "Colorado, USA",
+    pricepernight: 55,
+    maxnumberofdays: 3,
+    rooms: 2,
+    type: "House",
+    animaltype: "Cat",
+    maxsizeofanimal: "Medium",
+    maxnumberofanimals: 2,
+  },
+  {
+    name: "House for turtles",
+    location: "Colorado, USA",
+    pricepernight: 55,
+    maxnumberofdays: 3,
+    rooms: 2,
+    type: "House",
+    animaltype: "Cat",
+    maxsizeofanimal: "Medium",
+    maxnumberofanimals: 2,
+  },
+  {
+    name: "House for turtles",
+    location: "Colorado, USA",
+    pricepernight: 55,
+    maxnumberofdays: 3,
+    rooms: 2,
+    type: "House",
+    animaltype: "Cat",
+    maxsizeofanimal: "Medium",
+    maxnumberofanimals: 2,
+  },
 ];
 // House.insertMany(houses).then((addedHouses) => {
 //     const user = {email: 'tes@test.com',
@@ -210,24 +213,21 @@ let houses = [
 //     houses: addedHouses.map(house => house._id),
 //     }
 
-//     User.insertMany(user); 
+//     User.insertMany(user);
 //   }).catch((err) => {
 //     console.log("Error with mongoose method", err);
 
 const MONGO_URI =
   process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/final-project";
 console.log(MONGO_URI);
-mongoose
-  .connect(MONGO_URI)
-  .then((x) => {
-    const dbName = x.connections[0].name;
-    console.log(`Connected to Mongo! Database name: "${dbName}"`);
-    House.insertMany(houses)
-      .then((addedHouses) => {
-        addedHouses.map((house) => console.log(house.name)); // to console.log each added name
-      })
-      .catch((err) => {
-        console.log("Error with mongoose method", err);
-      });
-  })
-  
+mongoose.connect(MONGO_URI).then((x) => {
+  const dbName = x.connections[0].name;
+  console.log(`Connected to Mongo! Database name: "${dbName}"`);
+  House.insertMany(houses)
+    .then((addedHouses) => {
+      addedHouses.map((house) => console.log(house.name)); // to console.log each added name
+    })
+    .catch((err) => {
+      console.log("Error with mongoose method", err);
+    });
+});
