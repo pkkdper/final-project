@@ -3,6 +3,7 @@ const Animal = require("../models/Animal.model");
 const jwt = require("jsonwebtoken");
 const { isAuthenticated } = require("../middlewares/isAuthenticated");
 const User = require("../models/User.model")
+
 router.get("/animals", async (req, res, next) => {
   const animals = await Animal.find();
 
@@ -45,11 +46,19 @@ router.put("/animals/:id", async (req, res, next) => {
 
 // DELETE an animal
 
-router.delete("/animals/delete/:id", async (req, res, next) => {
+router.delete("/delete/:id", async (req, res, next) => {
   const { id } = req.params;
-  const animal = await animal.findByIdAndDelete(id);
+  const animal = await animal.findByIdAndDelete(id, function (err, docs) {
+    if (err){
+        console.log(err)
+    }
+    else{
+        console.log("Deleted : ", docs);
+    }
+});
   // const userUpdated = await User.findByIdAndUpdate( userid, {$push:{houses:houseid}}, {new:true});
   res.status(204).json(animal)
 });
+
 
 module.exports = router;
