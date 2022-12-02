@@ -3,6 +3,7 @@ const Animal = require("../models/Animal.model");
 const jwt = require("jsonwebtoken");
 const { isAuthenticated } = require("../middlewares/isAuthenticated");
 const User = require("../models/User.model")
+const uploader = require('../middlewares/cloudinary.config.js');
 
 router.get("/animals", async (req, res, next) => {
   const animals = await Animal.find();
@@ -33,6 +34,28 @@ router.post("/", isAuthenticated , async (req, res, next) => {
   res.status(201).json(userFound);
 });
 
+router.post("/:id/image", uploader.single("imageUrl"), async (req, res) => {
+  console.log("hi", req.body, req.file)
+  const newObj = {}
+  for(const key in req.body) {
+    console.log(req.body.key, req.body[key])
+if (req.body[key] !== "undefined") {
+  newObj[key]=req.body[key]
+
+}
+  } 
+  newObj["picture"] = req.file.path
+  console.log("newobj", newObj)
+  // const { username, email, name, surname, picture, location, age} = req.body;
+  const { id } = req.params;
+
+
+  // record to database
+
+  const animal = await Animal.findByIdAndUpdate(id, newObj, { new: true });
+  console.log(animal)
+  res.status(201).json({ animal });
+});
 // UPDATE an animal
 
 // router.put("/animals/:id", async (req, res, next) => {
