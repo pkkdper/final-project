@@ -26,15 +26,16 @@ router.get("/animals", async (req, res, next) => {
 //  CREATE an animal
 //      /animals/animals
 router.post("/", isAuthenticated , async (req, res, next) => {
+  console.log(req.body)
   const { name, type, size, medical, passport, vaccines } = req.body;
   const animal = await Animal.create(req.body);
   const userFound = await User.findByIdAndUpdate( req.payload.userCopy._id, {$push:{animals:animal._id}}, {new:true});
 
 
-  res.status(201).json(userFound);
+  res.status(201).json(animal);
 });
 
-router.post("/:id/image", uploader.single("imageUrl"), async (req, res) => {
+router.put("/:id/image", uploader.single("imageUrl"), async (req, res) => {
   console.log("hi", req.body, req.file)
   const newObj = {}
   for(const key in req.body) {
