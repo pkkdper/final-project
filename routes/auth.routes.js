@@ -80,6 +80,16 @@ router.get("/profile/:id", async (req, res, next) => {
   }
 });
 
+router.post("/profile/:id", async (req, res) => {
+  const { username, email, name, surname, picture, location, age} = req.body;
+  const { id } = req.params;
+
+  // record to database
+
+  const user = await User.findByIdAndUpdate(id, { username, name, email, surname, picture, location, age }, { new: true });
+  res.status(201).json({ user });
+});
+
 
 router.post("/profile/update/:id", 
 // uploader.single("imageUrl")

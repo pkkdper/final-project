@@ -22,7 +22,7 @@ const userSchema = new Schema(
     surname: String,
     location: String,
     age: Number,
-    picture: String,
+    picture: {type: String, default: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.lewesac.co.uk%2Fabout-us%2Fcoaches-leaders%2Fattachment%2Fdefault-avatar&psig=AOvVaw22ZPLu-sMO2wHMzmtnOmPB&ust=1670018374900000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCKCDy7G12fsCFQAAAAAdAAAAABAE"},
     houses: [{ type: Schema.Types.ObjectId, ref: "House" }],
     animals: [{
       type: Schema.Types.ObjectId,
