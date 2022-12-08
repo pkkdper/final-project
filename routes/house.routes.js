@@ -1,10 +1,6 @@
 const router = require("express").Router();
 const house = require("../models/House.model");
-const User = require("../models/User.model")
-
-// router.get("/", (req, res, next) => {
-//     res.json("All good in here");
-// });
+const User = require("../models/User.model");
 
 router.get("/houses", async (req, res, next) => {
   const houses = await house.find();
@@ -53,9 +49,13 @@ router.delete("/houses/:id", async (req, res, next) => {
 // ADD a house
 router.get("/houses/renthouse/:houseid/user/:userid", async (req, res) => {
   const { houseid, userid } = req.params;
-  const userUpdated = await User.findByIdAndUpdate( userid, {$push:{houses:houseid}}, {new:true});
-  console.log(userUpdated)
-  res.status(204).json(userUpdated)
-})
+  const userUpdated = await User.findByIdAndUpdate(
+    userid,
+    { $push: { houses: houseid } },
+    { new: true }
+  );
+  console.log(userUpdated);
+  res.status(204).json(userUpdated);
+});
 
 module.exports = router;

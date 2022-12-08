@@ -1,10 +1,7 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
 const House = require("../models/House.model");
-const User = require("../models/User.model");
 require("./index");
-const Animal = require("../models/Animal.model");
-// const flat1 = require("./housepictures/flat1.jpg")
 
 let houses = [
   {
