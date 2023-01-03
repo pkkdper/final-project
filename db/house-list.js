@@ -231,7 +231,8 @@ let houses = [
 //     console.log("Error with mongoose method", err);
 
 const MONGO_URI =
-  process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/final-project";
+  process.env.MONGODB_URI || 
+  "mongodb://127.0.0.1:27017/final-project";
 console.log(MONGO_URI);
 mongoose.connect(MONGO_URI).then((x) => {
   const dbName = x.connections[0].name;
